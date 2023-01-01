@@ -1,0 +1,22 @@
+[
+{ "id": 1, "nombre": "BLEACHED PUNK", "artista": "KAOS07", "precio": 6500, "img": "recursos/tapa1.jpg" ,"cantidad": 0 },
+{ "id": 2, "nombre": "Power To The Soul", "artista": "Chlär", "precio": 3200, "img": "recursos/tapa2.jpg" ,"cantidad": 0 },
+{ "id": 3, "nombre": "HEARTCORE ESSENTIALS", "artista": "KAOS08", "precio": 4700, "img": "recursos/tapa3.jpg" ,"cantidad": 0 },
+{ "id": 4, "nombre": "Juicy", "artista": "Julian Muller", "precio": 4100, "img": "recursos/tapa4.jpg" ,"cantidad": 0 },
+{ "id": 5, "nombre": "Strange Days", "artista": "Slam", "precio": 3700, "img": "recursos/tapa5.jpg" ,"cantidad": 0 },
+{ "id": 6, "nombre": "Disparate Lines", "artista": "Axel Karakasis", "precio": 3200, "img": "recursos/tapa6.jpg" ,"cantidad": 0 },
+{ "id": 7, "nombre": "Mögen", "artista": "TBK006", "precio": 2900, "img": "recursos/tapa7.jpg" ,"cantidad": 0 },
+{ "id": 8, "nombre": "TRANSFORMA VOLUME FIVE", "artista": "A.Paul, DJ Dextro", "precio": 4300, "img": "recursos/tapa8.jpg" ,"cantidad": 0 },
+{ "id": 9, "nombre": "Many ways To Go", "artista": "Jeroen Search", "precio": 3400, "img": "recursos/tapa9.jpg" ,"cantidad": 0 },
+{ "id": 10, "nombre": "Intermission", "artista": "Thomas Hessler", "precio": 2400, "img": "recursos/tapa10.jpg" ,"cantidad": 0 },
+{ "id": 11, "nombre": "LOSDOSMILDOS", "artista": "COYU", "precio": 5400, "img": "recursos/tapa11.jpg" ,"cantidad": 0 },
+{ "id": 12, "nombre": "Traces Of Influences", "artista": "Hertz, Mhonolink", "precio": 4300, "img": "recursos/tapa12.jpg" ,"cantidad": 0 },
+{ "id": 13, "nombre": "Evolving", "artista": "A-STS", "precio": 2000, "img": "recursos/tapa13.jpg" ,"cantidad": 0 },
+{ "id": 14, "nombre": "Manifesto Raw Culture", "artista": "Various Artists", "precio": 2900, "img": "recursos/tapa14.jpg" ,"cantidad": 0 },
+{ "id": 15, "nombre": "Techwise & Otherwise", "artista": "Devilfish", "precio": 5100, "img": "recursos/tapa15.jpg" ,"cantidad": 0 },
+{ "id": 16, "nombre": "Never Mind Have Fun", "artista": "M.I.T.A.", "precio": 4500, "img": "recursos/tapa16.jpg" ,"cantidad": 0 },
+{ "id": 17, "nombre": "Metaroots 2", "artista": "SCOM047", "precio": 3500, "img": "recursos/tapa17.jpg" ,"cantidad": 0 },
+{ "id": 18, "nombre": "Planet MHz III", "artista": "MHZ003", "precio": 2700, "img": "recursos/tapa18.jpg" ,"cantidad": 0 },
+{ "id": 19, "nombre": "Third Eye", "artista": "Florian Meindl", "precio": 4000, "img": "recursos/tapa19.jpg" ,"cantidad": 0 },
+{ "id": 20, "nombre": "Masquerade", "artista": "A.Morgan", "precio": 3200, "img": "recursos/tapa20.jpg" ,"cantidad": 0 }
+]

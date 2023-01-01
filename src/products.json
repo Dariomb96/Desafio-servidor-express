@@ -1,0 +1,22 @@
+[
+{"title":"BLEACHED PUNK","artist":"KAOS07","price":6500,"thumbnail":"recursos/tapa1.jpg","code":"bdf126","stock":21,"id":1},
+{"title":"Power To The Soul","artist":"Chlär","price":3200,"thumbnail":"recursos/tapa2.jpg","code":"ace456","stock":24,"id":2},
+{"title":"HEARTCORE ESSENTIALS","artist":"KAOS08","price":4700,"thumbnail":"recursos/tapa3.jpg","code":"adf246","stock":29,"id":3},
+{"title":"Juicy","artist":"Julian Muller","price":4100,"thumbnail":"recursos/tapa4.jpg","code":"abd124","stock":28,"id":4},
+{"title":"Strange Days","artist":"Slam","price":3700,"thumbnail":"recursos/tapa5.jpg","code":"ade146","stock":27,"id":5},
+{"title":"Disparate Lines","artist":"Axel Karakasis","price":3200,"thumbnail":"recursos/tapa6.jpg","code":"acf146","stock":30,"id":6},
+{"title":"Mögen","artist":"TBK006","price":2900,"thumbnail":"recursos/tapa7.jpg","code":"bef124","stock":19,"id":7},
+{"title":"TRANSFORMA VOLUME FIVE","artist":"A.Paul, DJ Dextro","price":4300,"thumbnail":"recursos/tapa8.jpg","code":"acf123","stock":12,"id":8},
+{"title":"Many ways To Go","artist":"Jeroen Search","price":3400,"thumbnail":"recursos/tapa9.jpg","code":"acd234","stock":5,"id":9},
+{"title":"Intermission","artist":"Thomas Hessler","price":2400,"thumbnail":"recursos/tapa10.jpg","code":"abe134","stock":7,"id":10},
+{"title":"LOSDOSMILDOS","artist":"COYU","price":5400,"thumbnail":"recursos/tapa11.jpg","code":"abc456","stock":13,"id":11},
+{"title":"Traces Of Influences","artist":"Hertz, Mhonolink","price":4300,"thumbnail":"recursos/tapa12.jpg","code":"def456","stock":17,"id":12},
+{"title":"Evolving","artist":"A-STS","price":2000,"thumbnail":"recursos/tapa13.jpg","code":"adf136","stock":22,"id":13},
+{"title":"Manifesto Raw Culture","artist":"Various Artists","price":2900,"thumbnail":"recursos/tapa14.jpg","code":"aef356","stock":21,"id":14},
+{"title":"Techwise & Otherwise","artist":"Devilfish","price":5100,"thumbnail":"recursos/tapa15.jpg","code":"bdf135","stock":16,"id":15},
+{"title":"Never Mind Have Fun","artist":"M.I.T.A.","price":4500,"thumbnail":"recursos/tapa16.jpg","code":"ade156","stock":32,"id":16},
+{"title":"Metaroots 2","artist":"SCOM047","price":3500,"thumbnail":"recursos/tapa17.jpg","code":"abd156","stock":9,"id":17},
+{"title":"Planet MHz III","artist":"MHZ003","price":2700,"thumbnail":"recursos/tapa18.jpg","code":"abf234","stock":11,"id":18},
+{"title":"Third Eye","artist":"Florian Meindl","price":4000,"thumbnail":"recursos/tapa19.jpg","code":"acd156","stock":15,"id":19},
+{"title":"Masquerade","artist":"A.Morgan","price":3200,"thumbnail":"recursos/tapa20.jpg","code":"ade135","stock":20,"id":20}
+]
