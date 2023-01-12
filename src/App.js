@@ -3,7 +3,8 @@ const express = require('express');
 const app = express();
 const port = 8080;
 let manager = new ProductManager('./products.json');
-let cart = [];
+let cartManager = new ProductManager('./cart.json');
+const cart = cartManager.getProducts();
 const productos = manager.getProducts();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -39,36 +40,43 @@ app.post('/productos', (req, res) => {
     productoAgregado == null ? res.status(200).send('producto agregado') : res.status(400).send("Bad request")
 });
 
-app.post('/cart', (req, res) => {
-    const newCart = req.body;
-    if (newCart.length) {
-        cart = newCart
-        return res.send("producto agregado");
+app.put('/productos/:id', (req, res) => {
+    manager.updateProduct(Number(req.params.id), req.body)
+    if (res.status(200)) {
+        res.send('Producto Actualizado');
+    } else {
+        res.status(400).send('Bad request');
     }
-    res.status(400).send("Bad request");
+
+});
+
+app.delete('/productos/:id/', (req, res) => {
+    const producto = (productos.find(e => e.id == Number(req.params.id)))
+    manager.deleteProduct(req.params.id)
+    if (producto == null) {
+        res.send('producto eliminado del carrito')
+    } else { res.status(400).send('Bad request') }
+
 })
 
 app.get('/cart', (req, res) => {
     res.send(cart)
 })
 
-app.put('/productos/:id', (req, res) => {
-    manager.updateProduct(Number(req.params.id), req.body)
-    if(res.status(200)){    
-        res.send('Producto Actualizado');
-    } else {
-        res.status(400).send('Bad request');
-    }
-    
-});
-
-app.delete('/cart/:id', (req, res) => {
-    manager.deleteProduct(req.params.id)
-    const producto = (cart.find(e => e.id == Number(req.params.id)))
-    if (producto == null) {
-        res.send('producto eliminado del carrito')
-    }
-    res.status(400).send('Bad request')
+app.post('/cart', (req, res) => {
+    console.log(cart)
+    let idCart = 0
+    const newCart = {
+        id: idCart++,
+        products: (productos.map(
+            producto => {
+                id = producto.id,
+                quantity = 0
+                return {id, quantity}
+            }))
+    }; 
+    cart.push(newCart);
+    res.send('Carrito creado con exito')
 })
 
 app.listen(port, () => {

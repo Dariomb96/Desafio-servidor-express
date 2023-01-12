@@ -7,7 +7,7 @@ class ProductManager {
         this.path = path;
     }
     addProduct(product) {
-        let { title, artist, price, thumbnail, code, stock } = product;
+        let { title, artist, price, thumbnail, code, stock, quantity } = product;
         const parse = JSON.parse(fs.readFileSync(this.path))
         const validateCode = parse.find((e => e.code === code));
         if (validateCode) {
@@ -24,6 +24,7 @@ class ProductManager {
                 thumbnail,
                 code,
                 stock,
+                quantity,
                 status: true,
                 id: this.id,
             }
@@ -59,7 +60,8 @@ class ProductManager {
         fs.writeFileSync(this.path, JSON.stringify(updatedProducts));
     }
     deleteProduct(id) {
-        const newProductList = this.getProducts().filter(product => product.id !== id);
+        const newProductList = this.getProducts().filter(product => product.id != id);
+        console.log(newProductList);
         fs.writeFileSync(this.path, JSON.stringify(newProductList));
     }
 }
