@@ -42,8 +42,10 @@ class ProductManager {
     }
     updateProduct(id, productMod) {
         const parse = JSON.parse(fs.readFileSync(this.path));
+        let updated = false;
         const updatedProducts = parse.map(product => {
             if (product.id === id) {
+                updated = true;
                 return {
                     ...product,
                     title: productMod.title,
@@ -58,6 +60,7 @@ class ProductManager {
             }
         })
         fs.writeFileSync(this.path, JSON.stringify(updatedProducts));
+        return updated;
     }
     deleteProduct(id) {
         const newProductList = this.getProducts().filter(product => product.id != id);

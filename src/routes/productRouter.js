@@ -32,15 +32,21 @@ productRouter.get('/:pid', (req, res) => {
 
 productRouter.post('/', (req, res) => {
     console.log(req.body)
-    const productoAgregado = productos.find(e => e.code == req.body.code);
-    manager.addProduct(req.body);
-    productoAgregado == null ? res.status(200).send('producto agregado') : res.status(400).send("Bad request")
+    const productoExistente = productos.find(e => e.code === req.body.code);
+    if (productoExistente) {
+        res.status(409).send('Conflict: Product with that code already exists');
+    } else {
+        manager.addProduct(req.body);
+        res.status(201).send('Product Added');
+    }
 });
 
 productRouter.put('/:pid', (req, res) => {
-    manager.updateProduct(Number(req.params.pid), req.body)
-    if (res.status(200)) {
-        res.send('Producto Actualizado');
+    const id = Number(req.params.pid);
+    const product = req.body;
+    const updatedProduct = manager.updateProduct(id, product);
+    if (updatedProduct) {
+        res.status(200).send('Producto Actualizado');
     } else {
         res.status(400).send('Bad request');
     }
