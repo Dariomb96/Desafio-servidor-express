@@ -1,0 +1,53 @@
+{{#if isValid}}
+<div>
+    {{#each docs}}
+    {{#if ../category}}
+    {{#if (eq ../category this.category)}}
+    <div>
+        <p>Name: {{this.title}} &nbsp; Artist: {{this.artist}}</p>
+        <p>Price: {{this.price}} &nbsp; Image: {{this.thumbnail}}</p>
+        {{#if this.status}}
+        <p>Disponible</p>
+        {{else}}
+        <p>No disponible</p>
+        {{/if}}
+    </div>
+    {{/if}}
+    {{else}}
+    <div>
+        <p>Name: {{this.title}} &nbsp; Artist: {{this.artist}}</p>
+        <p>Price: {{this.price}} &nbsp; Image: {{this.thumbnail}}</p>
+        {{#if this.status}}
+        <p>Disponible</p>
+        {{else}}
+        <p>No disponible</p>
+        {{/if}}
+    </div>
+    {{/if}}
+    <br />
+    {{/each}}
+</div>
+<br />
+<div>
+    {{#if hasPrevPage}}
+    <a href={{this.prevLink}}{{this.sortLink}}>
+        << Anterior</a>
+            {{/if}}
+            &nbsp;
+            {{this.page}}
+            &nbsp;
+            {{#if hasNextPage}}
+            <a href={{this.nextLink}}{{this.sortLink}}>Siguiente >></a>
+            {{/if}}
+</div>
+<br />
+<div>
+    {{#if this.sortAsc}}
+    <a href="/products?sort=desc">Ordenar por precio descendente</a>
+    {{else}}
+    <a href="/products?sort=asc">Ordenar por precio ascendente</a>
+    {{/if}}
+</div>
+{{else}}
+<h1>No hay productos para mostrar</h1>
+{{/if}}
