@@ -1,9 +1,0 @@
-[
-    {"title":"Power To The Soul","artist":"Chlär","price":3200,"thumbnail":"recursos/tapa2.jpg","code":"ace456","stock":24,"id":2, "status": true},
-    {"title":"HEARTCORE ESSENTIALS","artist":"KAOS08","price":4700,"thumbnail":"recursos/tapa3.jpg","code":"adf246","stock":29,"id":3, "status": true},
-    {"title":"TRANSFORMA VOLUME FIVE","artist":"A.Paul, DJ Dextro","price":4300,"thumbnail":"recursos/tapa8.jpg","code":"acf123","stock":12,"id":8, "status": true},
-    {"title":"LOSDOSMILDOS","artist":"COYU","price":5400,"thumbnail":"recursos/tapa11.jpg","code":"abc456","stock":13,"id":11, "status": true},
-    {"title":"Traces Of Influences","artist":"Hertz, Mhonolink","price":4300,"thumbnail":"recursos/tapa12.jpg","code":"def456","stock":17,"id":12, "status": true},
-    {"title":"Techwise & Otherwise","artist":"Devilfish","price":5100,"thumbnail":"recursos/tapa15.jpg","code":"bdf135","stock":16,"id":15, "status": true},
-    {"title":"Masquerade","artist":"A.Morgan","price":3200,"thumbnail":"recursos/tapa20.jpg","code":"ade135","stock":20,"id":20, "status": true}
-]

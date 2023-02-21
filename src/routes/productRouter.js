@@ -1,63 +1,84 @@
 const express = require('express');
 const productRouter = express.Router();
-const ProductManager = require('../ProductManager.js');
-let manager = new ProductManager('./products.json');
-const productos = manager.getProducts();
+const { productsModel } = require('../models/products');
 
-productRouter.get('/', (req, res) => {
-    console.log(productos);
-    const limite = req.query.limite;
-    if (limite && !isNaN(Number(limite))) {
-        const productosConLimite = productos.slice(0, limite);
-        res.send(productosConLimite);
-    } else {
-        res.send(productos);
+productRouter.get('/', async (req, res) => {
+    let page = parseInt(req.query.page) || 1;
+    let limit = parseInt(req.query.limit) || 10;
+    let sort = req.query.sort || null;
+    let query = {};
+
+    if (req.query.category) {
+        query.category = req.query.category;
+    }
+    if (req.query.status) {
+        query.status = req.query.status;
+    }
+
+    let options = {
+        page: page,
+        limit: limit,
+        lean: true,
+        sort: sort ? { price: sort === 'asc' ? 1 : -1 } : null,
+    };
+
+    try {
+        let result = await productsModel.paginate(query, options);
+        let response = {
+            status: 'success',
+            payload: result.docs,
+            totalPages: result.totalPages,
+            prevPage: result.hasPrevPage ? result.prevPage : null,
+            nextPage: result.hasNextPage ? result.nextPage : null,
+            page: result.page,
+            hasPrevPage: result.hasPrevPage,
+            hasNextPage: result.hasNextPage,
+            prevLink: result.hasPrevPage ? `http://localhost:8080/api/products?page=${result.prevPage}` : null,
+            nextLink: result.hasNextPage ? `http://localhost:8080/api/products?page=${result.nextPage}` : null
+        };
+        res.json(response);
+    } catch (err) {
+        console.log(err);
+        let response = {
+            status: 'error',
+            message: err.message,
+        };
+        res.status(500).json(response);
     }
 });
 
-productRouter.get('/:pid', (req, res) => {
-    const producto = (productos.find(e => e.id == Number(req.params.pid)));
-    if (producto == null) {
-        const errorNoProducto = `
-        <html>  
-            <body>
-                <h1 style="color: red;">Error: id no existente</h1>
-            </body>
-        </html>`;
-        res.send(errorNoProducto);
-    } else {
-        res.send(producto)
-    }
-});
 
-productRouter.post('/', (req, res) => {
-    console.log(req.body)
-    const productoExistente = productos.find(e => e.code === req.body.code);
-    if (productoExistente) {
-        res.status(409).send('Conflict: Product with that code already exists');
-    } else {
-        manager.addProduct(req.body);
-        res.status(201).send('Product Added');
+/*productRouter.get('', async (req, res) => {
+    try {
+        let products = await productsModel.find();
+        const limit = req.query.limit;
+        if(limit && !isNaN(Number(limit))){
+        const slicedProducts = products.slice(0, limit);
+        res.status(200).json(slicedProducts);
+        }else {
+            res.status(200).json(products);
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message })
     }
-});
+});*/
 
-productRouter.put('/:pid', (req, res) => {
-    const id = Number(req.params.pid);
-    const product = req.body;
-    const updatedProduct = manager.updateProduct(id, product);
-    if (updatedProduct) {
-        res.status(200).send('Producto Actualizado');
-    } else {
-        res.status(400).send('Bad request');
+productRouter.post('', async (req, res) => {
+
+    try {
+        let { title, artist, price, thumbnail, code, stock, category, status } = req.body;
+        if (!title || !artist || !price || !thumbnail || !code || !stock || !category || !status) {
+            res.status(400).json({ error: 'Missing data' });
+            return;
+        } else {
+            let product = { title, artist, price, thumbnail, code, stock, category, status };
+            let result = await productsModel.create(product);
+            res.status(200).json({ result: "success", payload: result });
+        }
     }
-});
-
-productRouter.delete('/:pid', (req, res) => {
-    const producto = (productos.find(e => e.id == Number(req.params.pid)))
-    manager.deleteProduct(req.params.pid)
-    if (producto == null) {
-        res.send('producto eliminado del carrito')
-    } else { res.status(400).send('Bad request') }
+    catch (err) {
+        res.status(500).json({ error: err.message })
+    }
 });
 
 module.exports = {
