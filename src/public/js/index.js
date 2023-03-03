@@ -47,6 +47,10 @@ elementExists("signup") &&
       }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        if (data.message === "success") {
+          window.location.href = "/login";
+          console.log(data);
+        }})
       .catch((error) => console.log(error));
   });

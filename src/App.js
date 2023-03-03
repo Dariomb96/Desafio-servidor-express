@@ -20,13 +20,14 @@ const httpServer = app.listen(port, () => {
     console.log(`listen on localhost:${port}`);
 });
 
-const USER_MONGO = process.env.USER_MONGO;
-const PASS_MONGO = process.env.PASS_MONGO;
-const DB_MONGO = process.env.DB_MONGO;
-const STRING_CONNECTION = `mongodb+srv://${USER_MONGO}:${PASS_MONGO}@cluster0.5xfau6w.mongodb.net/${DB_MONGO}?retryWrites=true&w=majority`
+//const USER_MONGO = process.env.USER_MONGO;
+//const PASS_MONGO = process.env.PASS_MONGO;
+//const DB_MONGO = process.env.DB_MONGO;
+//const STRING_CONNECTION = `mongodb+srv://${USER_MONGO}:${PASS_MONGO}@cluster0.5xfau6w.mongodb.net/${DB_MONGO}?retryWrites=true&w=majority`
 
 const socketServer = new Server(httpServer);
-mongoose.connect(`mongodb+srv://${process.env.USER_MONGO}:${process.env.PASS_MONGO}@cluster0.5xfau6w.mongodb.net/${process.env.DB_MONGO}?retryWrites=true&w=majority`, (err) => {
+mongoose.set("strictQuery", false);
+mongoose.connect(`mongodb+srv://admin:D9KYfHyWUicmEYAf@cluster0.5xfau6w.mongodb.net/?retryWrites=true&w=majority`, (err) => {
     if (err) {
         console.log('cannot connect to database: ' + err);
     } else { console.log('connected to database') }
@@ -44,7 +45,7 @@ app.use(
         resave: true,
         saveUninitialized: true,
         store: MongoStore.create({
-            mongoUrl: STRING_CONNECTION,
+            mongoUrl: `mongodb+srv://admin:D9KYfHyWUicmEYAf@cluster0.5xfau6w.mongodb.net/?retryWrites=true&w=majority`,
             mongoOptions: {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
@@ -70,14 +71,3 @@ socketServer.on('connection', socket => {
         console.log('user disconnected');
     });
 });
-
-const environment = async () => {
-    try {
-        await mongoose.connect(STRING_CONNECTION);
-        console.log("Conectado a MongoDB");
-    } catch (error) {
-        console.log(`Error al conectar a MongoDB: ${error}`);
-    }
-};
-
-environment();

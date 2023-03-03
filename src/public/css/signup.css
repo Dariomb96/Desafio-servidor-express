@@ -18,10 +18,13 @@ body {
   font-family: "Helvetica", "Arial", sans-serif;
   font-size: 16px;
   line-height: 1.3;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+::placeholder {
+  color: white;
 }
 
 .speaker-form-header {
