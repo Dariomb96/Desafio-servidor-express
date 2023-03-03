@@ -4,7 +4,7 @@ const profileRouter = express.Router();
 
 
 profileRouter.get("/", (req, res) => {
-  res.render("profile", { title: "Login", styles: "css/profile.css" });
+  res.render("products", { title: "Login", styles: "css/profile.css" });
 });
 
 module.exports = {
