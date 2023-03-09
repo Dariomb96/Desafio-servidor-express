@@ -1,6 +1,7 @@
 const { userModel } = require('../models/users');
 const express = require('express');
 const signupRouter = express.Router();
+const { createHash } = require("../utils.js");
 
 
 
@@ -15,7 +16,7 @@ signupRouter.post("/", async (req, res) => {
       first_name,
       last_name,
       email,
-      password,
+      password : createHash(password),
       age,
     });
     res.status(201).json({ message: "success", data: user });
