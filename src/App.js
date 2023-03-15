@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const passport = require('passport');
+const { intializePassport } = require('./config/passport.config');
 
 const { cartRouter } = require('./routes/cartRouter');
 const { productRouter } = require('./routes/productRouter');
@@ -14,6 +16,7 @@ const { loginRouter } = require('./routes/loginRouter');
 const { profileRouter } = require('./routes/profileRouter');
 const { signupRouter } = require('./routes/signupRouter');
 const { forgotRouter } = require('./routes/forgotRouter');
+const { sessionRouter } = require('./routes/sessionRouter');
 
 const app = express();
 const port = 8080;
@@ -64,6 +67,13 @@ app.use("/login", loginRouter);
 app.use("/signup", signupRouter);
 app.use("/profile", profileRouter);
 app.use("/forgot", forgotRouter);
+
+intializePassport();
+app.use(session({
+    secret: "coderhouse",
+}));
+app.use(passport.initialize());
+app.use('/api/sessions', sessionRouter);
 
 socketServer.on('connection', socket => {
     console.log('new client connected');

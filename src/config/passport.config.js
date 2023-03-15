@@ -3,6 +3,15 @@ const githubStrategy = require("passport-github2");
 const { userModel } = require("../models/users");
 
 const intializePassport = () => {
+    
+    passport.serializeUser((user,done) => {
+        done(null,user._id);
+    });
+    passport.deserializeUser(async (id,done) => {
+        let user = await userModel.findById(id);
+        done(null,user);
+    });
+
     passport.use('github', new githubStrategy({
         clientID: "Iv1.3c46c1a4af96e104",
         clientSecret: '31a758e1391f78f174129fd0238abed916dbd81d',
@@ -29,4 +38,7 @@ const intializePassport = () => {
             return done(error);
         }
     }));
+}
+module.exports={
+    intializePassport,
 }
