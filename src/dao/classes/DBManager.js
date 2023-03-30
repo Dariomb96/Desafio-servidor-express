@@ -104,6 +104,4 @@ class CartsManager {
         return result;
     }
 }
-module.exports = {
-    CartsManager,
-}
+export default CartsManager;
