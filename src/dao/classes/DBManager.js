@@ -1,4 +1,4 @@
-const { cartsModel } = require('../models/cart');
+import { cartsModel } from "../models/cart.js";
 
 class CartsManager {
     // This function returns all the carts present in the collection. In case there is a limit set with a query param it limits the data being sent.

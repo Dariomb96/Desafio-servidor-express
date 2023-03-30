@@ -1,14 +1,9 @@
-const express = require ('express');
-const passport = require ('passport');
+import express from 'express';
+import { githubAuth, githubAuthCallback } from '../controllers/session.js';
+
 const sessionRouter = express.Router();
 
-sessionRouter.get ('/github', passport.authenticate ('github', {scope: ['user:email']}), async (req, res) => {});
+sessionRouter.get('/github', githubAuth);
+sessionRouter.get('/githubcallback', githubAuthCallback);
 
-sessionRouter.get ('/githubcallback', passport.authenticate ('github', {failureRedirect: '/login'}), async (req, res) => {
-    req.session.user = req.user;
-    res.redirect ('/profile');
-});
-
-module.exports = {
-    sessionRouter,
-}
+export { sessionRouter };

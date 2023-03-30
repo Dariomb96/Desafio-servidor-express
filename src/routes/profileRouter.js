@@ -1,12 +1,8 @@
-const { userModel } = require('../models/users');
-const express = require('express');
+import express from 'express';
+import { getProfilePage } from '../controllers/profileController.js';
+
 const profileRouter = express.Router();
 
+profileRouter.get("/", getProfilePage);
 
-profileRouter.get("/", (req, res) => {
-  res.render("products", { title: "Login", styles: "css/profile.css" });
-});
-
-module.exports = {
-  profileRouter,
-}
+export default { profileRouter };
