@@ -1,22 +1,23 @@
-require('dotenv').config()
-const express = require('express');
-const { engine } = require('express-handlebars');
-const { Server } = require('socket.io');
-const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
-const passport = require('passport');
-const { intializePassport } = require('./config/passport.config');
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import { engine } from 'express-handlebars';
+import { Server } from 'socket.io';
+import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
+import passport from 'passport';
+import { intializePassport } from './config/passport.config';
 
-const { cartRouter } = require('./routes/cartRouter');
-const { productRouter } = require('./routes/productRouter');
-const { viewsRouter } = require('./routes/viewsRouter');
-const { loginRouter } = require('./routes/loginRouter');
-const { profileRouter } = require('./routes/profileRouter');
-const { signupRouter } = require('./routes/signupRouter');
-const { forgotRouter } = require('./routes/forgotRouter');
-const { sessionRouter } = require('./routes/sessionRouter');
+import { cartRouter } from './routes/cartRouter';
+import { productRouter } from './routes/productRouter';
+import { viewsRouter } from './routes/viewsRouter';
+import { loginRouter } from './routes/loginRouter';
+import { profileRouter } from './routes/profileRouter';
+import { signupRouter } from './routes/signupRouter';
+import { forgotRouter } from './routes/forgotRouter';
+import { sessionRouter } from './routes/sessionRouter';
 
 const app = express();
 const port = 8080;

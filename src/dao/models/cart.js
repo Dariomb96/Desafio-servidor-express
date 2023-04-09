@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const cartCollection = "cart";
 
@@ -32,6 +32,6 @@ cartSchema.pre("findOne", function () {
 });
 
 const cartsModel = mongoose.model(cartCollection, cartSchema);
-module.exports = {
+export  {
   cartsModel
 };

@@ -1,6 +1,6 @@
-const passport = require("passport");
-const githubStrategy = require("passport-github2");
-const { userModel } = require("../models/users");
+import passport from "passport";
+import githubStrategy from "passport-github2";
+import { userModel } from "../models/users.js";
 
 const intializePassport = () => {
     
@@ -39,6 +39,6 @@ const intializePassport = () => {
         }
     }));
 }
-module.exports={
+export {
     intializePassport,
 }
