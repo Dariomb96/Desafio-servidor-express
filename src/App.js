@@ -10,14 +10,14 @@ import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import { intializePassport } from './config/passport.config';
 
-import { cartRouter } from './routes/cartRouter';
-import { productRouter } from './routes/productRouter';
-import { viewsRouter } from './routes/viewsRouter';
-import { loginRouter } from './routes/loginRouter';
-import { profileRouter } from './routes/profileRouter';
-import { signupRouter } from './routes/signupRouter';
-import { forgotRouter } from './routes/forgotRouter';
-import { sessionRouter } from './routes/sessionRouter';
+import { cartRouter } from './routes/cartRouter.js';
+import { productRouter } from './routes/productRouter.js';
+import { viewsRouter } from './routes/viewsRouter.js';
+import { loginRouter } from './routes/loginRouter.js';
+import { profileRouter } from './routes/profileRouter.js';
+import { signupRouter } from './routes/signupRouter.js';
+import { forgotRouter } from './routes/forgotRouter.js';
+import { sessionRouter } from './routes/sessionRouter.js';
 
 const app = express();
 const port = 8080;
