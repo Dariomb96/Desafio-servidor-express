@@ -1,7 +1,7 @@
 import { userModel } from "../dao/models/users.js";
 import { isValidPassword } from "../utils.js";
 
-async function login(req, res) {
+export async function login(req, res) {
     const { username, password } = req.body;
     try {
         const response = await userModel.findOne({
@@ -27,5 +27,3 @@ async function login(req, res) {
         res.status(500).json({ error: error.message });
     }
 }
-
-export default login;

@@ -7,4 +7,4 @@ forgotRouter.get("/", renderForgot);
 
 forgotRouter.post("/", forgotPassword);
 
-export default forgotRouter;
+export {forgotRouter};

@@ -1,7 +1,7 @@
 import { userModel } from '../dao/models/users.js';
 import { createHash } from '../utils.js';
 
-const signUp = async (req, res) => {
+export const signUp = async (req, res) => {
     const { first_name, last_name, email, password, age } = req.body;
     try {
         const user = await userModel.create({
@@ -17,11 +17,6 @@ const signUp = async (req, res) => {
     }
 }
 
-const renderSignUp = (req, res) => {
+export const renderSignUp = (req, res) => {
     res.render("signup", { title: "Signup", styles: "css/signup.css" });
 }
-
-export default { 
-    signUp, 
-    renderSignUp 
-};

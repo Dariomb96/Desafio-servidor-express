@@ -1,6 +1,6 @@
 import { cartsModel } from "../models/cart.js";
 
-class CartsManager {
+class CartManager {
     // This function returns all the carts present in the collection. In case there is a limit set with a query param it limits the data being sent.
     getCarts(a) {
         if (a === undefined) {
@@ -104,4 +104,4 @@ class CartsManager {
         return result;
     }
 }
-export default CartsManager;
+export default CartManager;

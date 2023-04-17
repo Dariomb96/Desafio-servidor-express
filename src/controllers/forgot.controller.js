@@ -1,7 +1,7 @@
-import userModel from "../dao/models/users.js";
+import { userModel } from "../dao/models/users.js";
 import { isValidPassword, createHash } from "../utils.js";
 
-async function forgotPassword(req, res) {
+export async function forgotPassword(req, res) {
     const { username, password, repeatPassword } = req.body;
     let newPassword = createHash(password);
     console.log(repeatPassword, newPassword);
@@ -49,11 +49,6 @@ async function forgotPassword(req, res) {
         return;
     }
 }
-async function renderForgot(req, res) {
+export async function renderForgot(req, res) {
     res.render("forgot", { title: "Login", styles: "css/login.css" });
-};
-
-export default {
-    forgotPassword,
-    renderForgot,
 };

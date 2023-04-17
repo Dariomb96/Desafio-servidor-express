@@ -9,4 +9,4 @@ loginRouter.get("/", (req, res) => {
 
 loginRouter.post("/", login);
 
-export default loginRouter;
+export {loginRouter};

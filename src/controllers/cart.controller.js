@@ -1,6 +1,6 @@
-import { CartsManager } from '../dao/classes/DBManager.js';
+import  CartManager  from '../dao/classes/DBManager.js';
 
-const CartsManager = new CartsManager();
+const CartsManager = new CartManager();
 
 
 export const getCarts = async (req, res) => {

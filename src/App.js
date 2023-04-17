@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
+import path from 'path';
 import express from 'express';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
@@ -8,7 +9,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
-import { intializePassport } from './config/passport.config';
+import { intializePassport } from './config/passport.config.js';
 
 import { cartRouter } from './routes/cartRouter.js';
 import { productRouter } from './routes/productRouter.js';
@@ -19,8 +20,10 @@ import { signupRouter } from './routes/signupRouter.js';
 import { forgotRouter } from './routes/forgotRouter.js';
 import { sessionRouter } from './routes/sessionRouter.js';
 
+
 const app = express();
 const port = 8080;
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const httpServer = app.listen(port, () => {
     console.log(`listen on localhost:${port}`);
 });

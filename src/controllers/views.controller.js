@@ -1,6 +1,6 @@
 import { productsModel } from '../dao/models/products.js';
 
-const getProducts = async (req, res) => {
+export const getProducts = async (req, res) => {
     let page = parseInt(req.query.page) || 1;
     let limit = parseInt(req.query.limit) || 10;
     let sort = req.query.sort || null;
@@ -37,5 +37,3 @@ const getProducts = async (req, res) => {
         res.render('error');
     }
 };
-
-export default getProducts;

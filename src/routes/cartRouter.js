@@ -1,16 +1,16 @@
 import { Router } from "express";
 import CartsManager from "../controllers/cart.controller.js";
 
-const router = Router();
+const cartRouter = Router();
 
-router.get("/", CartsManager.getCarts);
-router.get("/:cid", CartsManager.getCartsById);
-router.post("/", CartsManager.addCart);
-router.get("/:cid/:pid", CartsManager.updateCartProducts);
-router.delete("/:cid", CartsManager.deleteCart);
-router.delete("/:cid/:pid", CartsManager.deleteCartProduct);
-router.put("/:cid", CartsManager.updateCart);
-router.put("/:cid/:pid", CartsManager.updateProductQuantity);
-router.delete("/:cid", CartsManager.deleteAllCartProducts);
+cartRouter.get("/", CartsManager.getCarts);
+cartRouter.get("/:cid", CartsManager.getCartsById);
+cartRouter.post("/", CartsManager.addCart);
+cartRouter.get("/:cid/:pid", CartsManager.updateCartProducts);
+cartRouter.delete("/:cid", CartsManager.deleteCart);
+cartRouter.delete("/:cid/:pid", CartsManager.deleteCartProduct);
+cartRouter.put("/:cid", CartsManager.updateCart);
+cartRouter.put("/:cid/:pid", CartsManager.updateProductQuantity);
+cartRouter.delete("/:cid", CartsManager.deleteAllCartProducts);
 
-export default router;
+export {cartRouter};

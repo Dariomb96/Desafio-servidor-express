@@ -1,5 +1,5 @@
 import express from 'express';
-import { githubAuth, githubAuthCallback } from '../controllers/session.js';
+import { githubAuth, githubAuthCallback } from '../controllers/session.controller.js';
 
 const sessionRouter = express.Router();
 
