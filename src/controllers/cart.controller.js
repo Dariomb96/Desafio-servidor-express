@@ -136,15 +136,3 @@ export const deleteAllCartProducts = async (req, res) => {
         console.log(error);
     }
 };
-
-export default {
-    getCarts,
-    getCartsById,
-    addCart,
-    updateCartProducts,
-    deleteCart,
-    deleteCartProduct,
-    updateCart,
-    updateProductQuantity,
-    deleteAllCartProducts,
-};

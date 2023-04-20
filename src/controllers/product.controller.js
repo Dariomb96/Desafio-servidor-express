@@ -1,27 +1,10 @@
-import { productsModel } from '../dao/models/products.js';
+import { getProducts, createProduct } from '../repository/productsRepository.js';
 
-export const getProducts = async (req, res) => {
-    let page = parseInt(req.query.page) || 1;
-    let limit = parseInt(req.query.limit) || 10;
-    let sort = req.query.sort || null;
-    let query = {};
-
-    if (req.query.category) {
-        query.category = req.query.category;
-    }
-    if (req.query.status) {
-        query.status = req.query.status;
-    }
-
-    let options = {
-        page: page,
-        limit: limit,
-        lean: true,
-        sort: sort ? { price: sort === 'asc' ? 1 : -1 } : null,
-    };
+export const getProductsController = async (req, res) => {
+    let { page, limit, sort, category, status } = req.query;
 
     try {
-        let result = await productsModel.paginate(query, options);
+        let result = await getProducts({ page, limit, sort, category, status });
         let response = {
             status: 'success',
             payload: result.docs,
@@ -45,20 +28,13 @@ export const getProducts = async (req, res) => {
     }
 };
 
-export const createProduct = async (req, res) => {
+export const createProductController = async (req, res) => {
+    let { title, artist, price, thumbnail, code, stock, category, status } = req.body;
+
     try {
-        let { title, artist, price, thumbnail, code, stock, category, status } = req.body;
-        if (!title || !artist || !price || !thumbnail || !code || !stock || !category || !status) {
-            res.status(400).json({ error: 'Missing data' });
-            return;
-        } else {
-            let product = { title, artist, price, thumbnail, code, stock, category, status };
-            let result = await productsModel.create(product);
-            res.status(200).json({ result: "success", payload: result });
-        }
-    }
-    catch (err) {
-        res.status(500).json({ error: err.message })
+        let result = await createProduct({ title, artist, price, thumbnail, code, stock, category, status });
+        res.status(200).json({ result: "success", payload: result });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
-
