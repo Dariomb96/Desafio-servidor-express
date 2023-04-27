@@ -10,6 +10,7 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import { intializePassport } from './config/passport.config.js';
+import { addLogger } from "./utils/logger.js";
 
 import { cartRouter } from './routes/cartRouter.js';
 import { productRouter } from './routes/productRouter.js';
