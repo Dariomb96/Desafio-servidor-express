@@ -19,7 +19,7 @@ import { profileRouter } from './routes/profileRouter.js';
 import { signupRouter } from './routes/signupRouter.js';
 import { forgotRouter } from './routes/forgotRouter.js';
 import { sessionRouter } from './routes/sessionRouter.js';
-
+import { mockingRouter } from './routes/mockingRouter.js';
 
 const app = express();
 const port = 8080;
@@ -71,6 +71,13 @@ app.use("/login", loginRouter);
 app.use("/signup", signupRouter);
 app.use("/profile", profileRouter);
 app.use("/forgot", forgotRouter);
+app.use("/mockingproducts", mockingRouter);
+
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = errorCodes[statusCode] || 'Internal Server Error';
+    res.status(statusCode).json({ error: message });
+});
 
 intializePassport();
 app.use(session({

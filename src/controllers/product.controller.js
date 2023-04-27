@@ -1,4 +1,4 @@
-import { getProducts, createProduct } from '../repository/productsRepository.js';
+import { getProducts, createProduct } from '../dao/repositories/productRepository.js';
 
 export const getProductsController = async (req, res) => {
     let { page, limit, sort, category, status } = req.query;
