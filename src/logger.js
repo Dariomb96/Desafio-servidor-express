@@ -1,59 +1,38 @@
-import winston from "winston";
-
-const customLevelsOptions = {
-    levels: {
-        fatal: 0,
-        error: 1,
-        warning: 2,
-        info: 3,
-        debug: 4,
-    },
-    colors: {
-        fatal: "red",
-        error: "orange",
-        warning: "yellow",
-        info: "green",
-        debug: "blue",
-    },
-};
+import winston from 'winston';
 
 const logger = winston.createLogger({
-    levels: customLevelsOptions.levels,
+    level: 'debug',
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json()
+    ),
     transports: [
         new winston.transports.Console({
-            level: "info",
+            level: 'debug',
             format: winston.format.combine(
-                winston.format.colorize({
-                    all: true,
-                    colors: {
-                        fatal: "red",
-                        error: "yellow",
-                        warning: "magenta",
-                        info: "green",
-                        debug: "cyan",
-                    },
-                }),
-                winston.format.simple()
+                winston.format.colorize(),
+                winston.format.printf((info) => {
+                    return `${info.timestamp} [${info.level}]: ${info.message}`;
+                })
             ),
         }),
         new winston.transports.File({
-            filename: "logs/error.log",
-            level: "error",
-            format: winston.format.simple(),
+            filename: 'logs/errors.log',
+            level: 'error',
+            format: winston.format.combine(
+                winston.format.timestamp(),
+                winston.format.json()
+            ),
         }),
     ],
 });
 
-export const addLogger = (req, res, next) => {
-    req.logger = logger;
-    req.logger.fatal(`${req.method} en ${req.url} - ${new Date().toISOString()}`);
-    req.logger.error(`${req.method} en ${req.url} - ${new Date().toISOString()}`);
-    req.logger.warning(
-        `${req.method} en ${req.url} - ${new Date().toISOString()}`
-    );
-    req.logger.info(`${req.method} en ${req.url} - ${new Date().toISOString()}`);
-    req.logger.debug(`${req.method} en ${req.url} - ${new Date().toISOString()}`);
-    next();
-};
+if (process.env.NODE_ENV !== 'production') {
+    logger.add(new winston.transports.Console({ level: 'debug' }));
+} else {
+    logger.add(new winston.transports.Console({ level: 'info' }));
+}
+
+export default logger;
 
 

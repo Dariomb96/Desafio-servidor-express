@@ -10,7 +10,7 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import { intializePassport } from './config/passport.config.js';
-import { addLogger } from "./utils/logger.js";
+
 
 import { cartRouter } from './routes/cartRouter.js';
 import { productRouter } from './routes/productRouter.js';
@@ -21,6 +21,7 @@ import { signupRouter } from './routes/signupRouter.js';
 import { forgotRouter } from './routes/forgotRouter.js';
 import { sessionRouter } from './routes/sessionRouter.js';
 import { mockingRouter } from './routes/mockingRouter.js';
+import { loggerRouter } from './routes/loggerRouter.js';
 
 const app = express();
 const port = 8080;
@@ -73,6 +74,7 @@ app.use("/signup", signupRouter);
 app.use("/profile", profileRouter);
 app.use("/forgot", forgotRouter);
 app.use("/mockingproducts", mockingRouter);
+app.use ("/loggerTest", loggerRouter);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
