@@ -1,4 +1,4 @@
-import { productsModel } from '../dao/models/products.js';
+import { productsModel } from '../models/products.js';
 
 export const getProducts = async ({ page = 1, limit = 10, sort = null, category = null, status = null }) => {
     let query = {};

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import CartsManager from "../controllers/cart.controller.js";
+import  CartsManager  from "../controllers/cart.controller.js";
 
 const cartRouter = Router();
 
@@ -12,6 +12,6 @@ cartRouter.delete("/:cid/:pid", CartsManager.deleteCartProduct);
 cartRouter.put("/:cid", CartsManager.updateCart);
 cartRouter.put("/:cid/:pid", CartsManager.updateProductQuantity);
 cartRouter.delete("/:cid", CartsManager.deleteAllCartProducts);
-cartRouter.put("/:cid/purchase", CartsManager.purchaseCart)
+//cartRouter.put("/:cid/purchase", CartsManager.purchaseCart)
 
 export {cartRouter};

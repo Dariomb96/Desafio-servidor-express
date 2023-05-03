@@ -3,7 +3,7 @@ import  CartManager  from '../dao/classes/DBManager.js';
 const CartsManager = new CartManager();
 
 
-export const getCarts = async (req, res) => {
+const getCarts = async (req, res) => {
     try {
         const limit = req.query.limit;
         res.send(await CartsManager.getCarts(limit));
@@ -15,7 +15,7 @@ export const getCarts = async (req, res) => {
 };
 
 //This method will return the cart with the corresponding id.
-export const getCartsById = async (req, res) => {
+const getCartsById = async (req, res) => {
     try {
         const id = req.params.cid;
         res.send(await CartsManager.getCartById(id));
@@ -27,7 +27,7 @@ export const getCartsById = async (req, res) => {
 };
 
 //This method will add a cart to the collection.
-export const addCart = async (req, res) => {
+const addCart = async (req, res) => {
     try {
         const arr = req.body;
         const cart = await CartsManager.addCart(arr);
@@ -40,7 +40,7 @@ export const addCart = async (req, res) => {
 };
 
 //This method adds a product to the cart found by its id. If it already exists it only adds 1 to its quantity, else it will create it with an intial quantity of 1 unit.
-export const updateCartProducts = async (req, res) => {
+const updateCartProducts = async (req, res) => {
     try {
         const cid = req.params.cid;
         const pid = req.params.pid;
@@ -57,7 +57,7 @@ export const updateCartProducts = async (req, res) => {
 };
 
 //This method will delete a cart.
-export const deleteCart = async (req, res) => {
+const deleteCart = async (req, res) => {
     try {
         const id = req.params.cid;
         const result = await CartsManager.deleteCart(id);
@@ -72,7 +72,7 @@ export const deleteCart = async (req, res) => {
 };
 
 //This method will delete a product within a cart.
-export const deleteCartProduct = async (req, res) => {
+const deleteCartProduct = async (req, res) => {
     try {
         const id = req.params.cid;
         const pid = req.params.pid;
@@ -88,7 +88,7 @@ export const deleteCartProduct = async (req, res) => {
 };
 
 //This method will updates the whole list of products in a cart.
-export const updateCart = async (req, res) => {
+const updateCart = async (req, res) => {
     try {
         const id = req.params.cid;
         const products = req.body;
@@ -105,7 +105,7 @@ export const updateCart = async (req, res) => {
 };
 
 //This method will update the quantity of a specific product within a specific cart.
-export const updateProductQuantity = async (req, res) => {
+const updateProductQuantity = async (req, res) => {
     try {
         const id = req.params.cid;
         const pid = req.params.pid;
@@ -123,7 +123,7 @@ export const updateProductQuantity = async (req, res) => {
 };
 
 //This method will delete all the products in a cart.
-export const deleteAllCartProducts = async (req, res) => {
+const deleteAllCartProducts = async (req, res) => {
     try {
         const id = req.params.cid;
         const result = await CartsManager.deleteCartProducts(id);
@@ -136,3 +136,15 @@ export const deleteAllCartProducts = async (req, res) => {
         console.log(error);
     }
 };
+
+export default {
+    getCarts,
+    getCartsById,
+    addCart,
+    updateCartProducts,
+    deleteCart,
+    deleteCartProduct,
+    updateCart,
+    updateProductQuantity,
+    deleteAllCartProducts
+  };
