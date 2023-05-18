@@ -10,7 +10,7 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import { intializePassport } from './config/passport.config.js';
-
+import { swaggerUi, swaggerDocs } from './config/swagger';
 
 import { cartRouter } from './routes/cartRouter.js';
 import { productRouter } from './routes/productRouter.js';
@@ -63,6 +63,7 @@ app.use(
         }),
     })
 );
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));

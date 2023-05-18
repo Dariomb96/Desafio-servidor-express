@@ -1,0 +1,101 @@
+Listado de rutas de carpetas
+El n£mero de serie del volumen es 9871-06D1
+C:.
+|   .env
+|   App.js
+|   logger.js
+|   output.doc
+|   ProductManager.js
+|   utils.js
+|   
++---config
+|       config.js
+|       passport.config.js
+|       
++---controllers
+|       cart.controller.js
+|       forgot.controller.js
+|       login.controller.js
+|       mocking.controller.js
+|       product.controller.js
+|       profile.controller.js
+|       session.controller.js
+|       signup.controller.js
+|       views.controller.js
+|       
++---dao
+|   +---classes
+|   |       DBManager.js
+|   |       
+|   +---models
+|   |       cart.js
+|   |       products.js
+|   |       ticket.js
+|   |       users.js
+|   |       
+|   \---repositories
+|           productRepository.js
+|           
++---logs
+|       errors.log
+|       
++---public
+|   +---assets
+|   |   +---ico
+|   |   |       poopifyv.png
+|   |   |       shop-cart.ico
+|   |   |       user-32.ico
+|   |   |       user-64.ico
+|   |   |       
+|   |   \---img
+|   |           tapa1.jpg
+|   |           tapa10.jpg
+|   |           tapa11.jpg
+|   |           tapa12.jpg
+|   |           tapa13.jpg
+|   |           tapa14.jpg
+|   |           tapa15.jpg
+|   |           tapa16.jpg
+|   |           tapa17.jpg
+|   |           tapa18.jpg
+|   |           tapa19.jpg
+|   |           tapa2.jpg
+|   |           tapa20.jpg
+|   |           tapa3.jpg
+|   |           tapa4.jpg
+|   |           tapa5.jpg
+|   |           tapa6.jpg
+|   |           tapa7.jpg
+|   |           tapa8.jpg
+|   |           tapa9.jpg
+|   |           
+|   +---css
+|   |       login.css
+|   |       signup.css
+|   |       
+|   \---js
+|           index.js
+|           
++---routes
+|       cartRouter.js
+|       forgotRouter.js
+|       loggerRouter.js
+|       loginRouter.js
+|       mockingRouter.js
+|       productRouter.js
+|       profileRouter.js
+|       sessionRouter.js
+|       signupRouter.js
+|       viewsRouter.js
+|       
+\---views
+    |   forgot.handlebars
+    |   home.handlebars
+    |   login.handlebars
+    |   products.handlebars
+    |   profile.handlebars
+    |   signup.handlebars
+    |   
+    \---layouts
+            main.handlebars
+            

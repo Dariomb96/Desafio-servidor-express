@@ -2,7 +2,36 @@ import  CartManager  from '../dao/classes/DBManager.js';
 
 const CartsManager = new CartManager();
 
-
+/**
+ * @swagger
+ * /carts:
+ *   get:
+ *     summary: Get all carts
+ *     parameters:
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: The number of items to return
+ *     responses:
+ *       200:
+ *         description: A list of carts
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Cart'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 const getCarts = async (req, res) => {
     try {
         const limit = req.query.limit;
@@ -14,7 +43,35 @@ const getCarts = async (req, res) => {
     }
 };
 
-//This method will return the cart with the corresponding id.
+/**
+ * @swagger
+ * /carts/{cid}:
+ *   get:
+ *     summary: Get a cart by ID
+ *     parameters:
+ *       - in: path
+ *         name: cid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The cart ID
+ *     responses:
+ *       200:
+ *         description: A single cart object
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Cart'
+ *       500:
+ *         description: Cart not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 const getCartsById = async (req, res) => {
     try {
         const id = req.params.cid;
@@ -26,7 +83,39 @@ const getCartsById = async (req, res) => {
     }
 };
 
-//This method will add a cart to the collection.
+/**
+ * @swagger
+ * /carts:
+ *   post:
+ *     summary: Add a new cart
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Cart'
+ *     responses:
+ *       200:
+ *         description: The created cart
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 cart:
+ *                   $ref: '#/components/schemas/Cart'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 const addCart = async (req, res) => {
     try {
         const arr = req.body;
@@ -39,7 +128,46 @@ const addCart = async (req, res) => {
     }
 };
 
-//This method adds a product to the cart found by its id. If it already exists it only adds 1 to its quantity, else it will create it with an intial quantity of 1 unit.
+/**
+ * @swagger
+ * /carts/{cid}/products/{pid}:
+ *   put:
+ *     summary: Add a product to the cart or increase its quantity
+ *     parameters:
+ *       - in: path
+ *         name: cid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The cart ID
+ *       - in: path
+ *         name: pid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The product ID
+ *     responses:
+ *       200:
+ *         description: The updated cart
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 acknowledged:
+ *                   type: boolean
+ *       500:
+ *         description: Cart not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 const updateCartProducts = async (req, res) => {
     try {
         const cid = req.params.cid;
@@ -56,7 +184,40 @@ const updateCartProducts = async (req, res) => {
     }
 };
 
-//This method will delete a cart.
+/**
+ * @swagger
+ * /carts/{cid}:
+ *   delete:
+ *     summary: Delete a cart
+ *     parameters:
+ *       - in: path
+ *         name: cid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The cart ID
+ *     responses:
+ *       200:
+ *         description: The deletion result
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 acknowledged:
+ *                   type: boolean
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 const deleteCart = async (req, res) => {
     try {
         const id = req.params.cid;
@@ -71,7 +232,46 @@ const deleteCart = async (req, res) => {
     }
 };
 
-//This method will delete a product within a cart.
+/**
+ * @swagger
+ * /carts/{cid}/products/{pid}:
+ *   delete:
+ *     summary: Delete a product from a cart
+ *     parameters:
+ *       - in: path
+ *         name: cid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The cart ID
+ *       - in: path
+ *         name: pid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The product ID
+ *     responses:
+ *       200:
+ *         description: The deletion result
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 acknowledged:
+ *                   type: boolean
+ *       500:
+ *         description: Product not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 const deleteCartProduct = async (req, res) => {
     try {
         const id = req.params.cid;
@@ -87,7 +287,48 @@ const deleteCartProduct = async (req, res) => {
     }
 };
 
-//This method will updates the whole list of products in a cart.
+/**
+ * @swagger
+ * /carts/{cid}:
+ *   put:
+ *     summary: Update the products in a cart
+ *     parameters:
+ *       - in: path
+ *         name: cid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The cart ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               $ref: '#/components/schemas/CartProduct'
+ *     responses:
+ *       200:
+ *         description: The updated cart
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 acknowledged:
+ *                   type: boolean
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 const updateCart = async (req, res) => {
     try {
         const id = req.params.cid;
@@ -104,7 +345,55 @@ const updateCart = async (req, res) => {
     }
 };
 
-//This method will update the quantity of a specific product within a specific cart.
+/**
+ * @swagger
+ * /carts/{cid}/products/{pid}/quantity:
+ *   put:
+ *     summary: Update the quantity of a product in a cart
+ *     parameters:
+ *       - in: path
+ *         name: cid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The cart ID
+ *       - in: path
+ *         name: pid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The product ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               quantity:
+ *                 type: integer
+ *     responses:
+ *        200:
+ *          description: The updated cart
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  message:
+ *                    type: string
+ *                  acknowledged:
+ *                    type: boolean
+ *        500:
+ *          description: Internal server error
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  error:
+ *                    type: string
+ */
 const updateProductQuantity = async (req, res) => {
     try {
         const id = req.params.cid;
@@ -122,7 +411,40 @@ const updateProductQuantity = async (req, res) => {
     }
 };
 
-//This method will delete all the products in a cart.
+/**
+ * @swagger
+ * /carts/{cid}/products:
+ *   delete:
+ *     summary: Delete all products from a cart
+ *     parameters:
+ *       - in: path
+ *         name: cid
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The cart ID
+ *     responses:
+ *       200:
+ *         description: The deletion result
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 acknowledged:
+ *                   type: boolean
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 const deleteAllCartProducts = async (req, res) => {
     try {
         const id = req.params.cid;
