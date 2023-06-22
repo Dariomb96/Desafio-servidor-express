@@ -8,7 +8,7 @@ form.addEventListener('submit', (event) => {
     const name = nameInput.value;
     const total = parseFloat(totalInput.value);
 
-    fetch('/ruta-del-controlador/sendEmail', {
+    fetch('/products/send-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
