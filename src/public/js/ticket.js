@@ -2,8 +2,7 @@ const form = document.querySelector('form');
 const nameInput = document.getElementById('name');
 const totalInput = document.querySelector('input[name="total"]');
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
+form.addEventListener('submit', () => {
 
     const name = nameInput.value;
     const total = parseFloat(totalInput.value);
@@ -21,6 +20,7 @@ form.addEventListener('submit', (event) => {
         .then(response => response.text())
         .then(data => {
             console.log(data);
+            window.location.href = "/ticket";
         })
         .catch(error => {
             console.error(error);

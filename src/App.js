@@ -92,7 +92,7 @@ app.use('/', (req, res, next) => {
         return res.redirect('/login');
     }
     next();
-});
+}); 
 app.use('/products', viewsRouter);
 app.use("/login", loginRouter);
 app.use("/signup", signupRouter);

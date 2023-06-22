@@ -7,6 +7,7 @@ export async function sendEmail(req, res) {
         const name = req.body.name;
         const total = req.body.total;
         const userId = req.user._id;
+        const mail = req.user.email
         const ticket = await ticketModel.create({
             purchase_datetime: new Date(),
             amount: total,
@@ -16,7 +17,6 @@ export async function sendEmail(req, res) {
             created_at: new Date(),
             updated_at: new Date(),
         });
-        console.log(`nombre: ${name}, total: ${total}, ticket: ${ticket}`);
         const ticketHtml = `
         <div>
             <h1>Ticket de compra</h1>
@@ -28,7 +28,7 @@ export async function sendEmail(req, res) {
         await cartsModel.deleteOne({ userId: userId });
         await transport.sendMail({
             from: '<betancourtdariom@gmail.com>',
-            to: 'betancourtdariom@gmail.com',
+            to: req.user.email,
             subject: 'Ticket de compra',
             html: ticketHtml,
             attachments: []

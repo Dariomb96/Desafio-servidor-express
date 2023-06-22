@@ -103,13 +103,14 @@ export async function renderCheckout(req, res) {
         const userId = req.user._id;
         const cart = await cartsModel.findOne({ userId: userId }); // Obtener el ID del carrito desde los parámetros de la solicitud
         if (!cart) {
-            return res.render('checkout', { title: "Checkout", styles: "css/checkout.css", });
+            return res.render('checkout', { title: "Checkout", styles: "css/checkout.css", script: "/js/ticket.js" });
         }
         const cartJSON = cart.toJSON(); // Convertir el objeto cart a JSON
         const cartProducts = cartJSON.products;
         res.render('checkout', { 
             title: "Checkout", 
-            styles: "css/checkout.css", 
+            styles: "/css/checkout.css",
+            script: "/js/ticket.js", 
             cartProducts, 
         });
     } catch (err) {
@@ -117,7 +118,7 @@ export async function renderCheckout(req, res) {
         const error = err.message; 
         console.log(error);
     }
-}  
+}
 
 export async function renderTicket(req, res) {
     try {
@@ -125,11 +126,13 @@ export async function renderTicket(req, res) {
         const cart = await cartsModel.findOne({ userId: userId });
         const cartJSON = cart.toJSON(); // Convertir el objeto cart a JSON
         const cartProducts = cartJSON.products;
+        const name = req.body.name;
         res.render('ticket', {
             title: "Ticket",
             styles: "css/ticket.css",
             cartProducts,
-        });
+            name: name,
+        }); 
     } catch (err) {
         res.status(500).send(err.message);
         const error = err.message;
