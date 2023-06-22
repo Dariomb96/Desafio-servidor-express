@@ -1,5 +1,5 @@
 import { Router } from "express";
-import logger from '../logger.js';
+import logger from '../middleware/logger.js';
 
 const loggerRouter = Router();
 

@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     default: "Consumer" 
+  },
+  lastLogin: {
+    type: Date,
+    default: null
   }
 });
 

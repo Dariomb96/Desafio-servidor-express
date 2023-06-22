@@ -8,7 +8,7 @@ class CartManager {
         }
         return cartsModel.find().limit(a);
     }
-
+    
     //This function brings the carts present in the collection by id.
     getCartById(id) {
         return cartsModel.find({ _id: id });

@@ -4,6 +4,7 @@ const cartCollection = "cart";
 
 const cartSchema = new mongoose.Schema(
   {
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'users', unique: true },
     products: {
       type: [
         {
@@ -32,6 +33,6 @@ cartSchema.pre("findOne", function () {
 });
 
 const cartsModel = mongoose.model(cartCollection, cartSchema);
-export  {
+export {
   cartsModel
 };

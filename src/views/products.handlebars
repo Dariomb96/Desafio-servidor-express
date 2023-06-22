@@ -1,5 +1,5 @@
 {{#if isValid}}
-<div>
+<div class="container principal catalogo text-center">
     {{#each docs}}
     {{#if ../category}}
     {{#if (eq ../category this.category)}}
@@ -8,7 +8,6 @@
         <p>Price: {{this.price}} &nbsp; Image: {{this.thumbnail}}</p>
         {{#if this.status}}
         <p>Disponible</p>
-        
         {{else}}
         <p>No disponible</p>
         {{/if}}
@@ -20,6 +19,11 @@
         <p>Price: {{this.price}} &nbsp; Image: {{this.thumbnail}}</p>
         {{#if this.status}}
         <p>Disponible</p>
+        <form action="products/add-to-cart" method="POST">
+            <input type="hidden" name="productId" value="{{this._id}}">
+            <input type="number" name="quantity" value="1">
+            <button type="submit">Agregar al carrito</button>
+        </form>
         {{else}}
         <p>No disponible</p>
         {{/if}}

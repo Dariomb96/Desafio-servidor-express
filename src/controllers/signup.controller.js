@@ -18,5 +18,5 @@ export const signUp = async (req, res) => {
 }
 
 export const renderSignUp = (req, res) => {
-    res.render("signup", { title: "Signup", styles: "css/signup.css" });
+    res.render('signup', { title: "Signup", styles: "/css/signup.css" });
 }

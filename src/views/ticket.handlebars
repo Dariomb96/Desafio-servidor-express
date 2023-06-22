@@ -1,0 +1,25 @@
+<h1 class="text-center">se ha enviado un email con el ticket comprobante, gracias por su compra!</h1>
+<div class="container bordeabajo text-center">
+    <div class="row">
+        {{#if cartProducts.length}}
+        <div class="col-md-6">
+            <div class="row">
+                {{#each cartProducts}}
+                <div class="col-md-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h3 class="card-title">{{product.title}}</h3>
+                            <p class="card-text">Cantidad: {{this.quantity}}</p>
+                            <p class="card-text">Precio: ${{product.price}}</p>
+                            <p class="card-text">Total: ${{calcTotal product.price this.quantity}}</p>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{else}}
+        <p>No se encontraron productos comprados.</p>
+        {{/if}}
+    </div>
+</div>

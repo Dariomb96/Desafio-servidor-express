@@ -1,4 +1,4 @@
-import  CartManager  from '../dao/classes/DBManager.js';
+import CartManager from '../dao/classes/DBManager.js';
 
 const CartsManager = new CartManager();
 
@@ -459,6 +459,59 @@ const deleteAllCartProducts = async (req, res) => {
     }
 };
 
+const purchaseCart = async (req, res) => {
+    try {
+        const cartId = req.body.cartId;
+
+        const cart = await cartsModel.findById(cartId).populate('products.product');
+
+        if (!cart) {
+            return res.status(404).json({ message: 'Carrito no encontrado' });
+        }
+
+        // Verificar si el carrito ya ha sido comprado
+        if (cart.purchased) {
+            return res.status(400).json({ message: 'El carrito ya ha sido comprado' });
+        }
+
+        // Obtener los productos del carrito
+        const products = cart.products;
+
+        // Verificar si hay suficiente stock para cada producto
+        for (const item of products) {
+            const product = item.product;
+            const quantity = item.quantity;
+
+            const productFromDB = await productsModel.findById(product);
+
+            if (!productFromDB) {
+                return res.status(404).json({ message: `Producto no encontrado para el ID ${product}` });
+            }
+
+            if (productFromDB.stock < quantity) {
+                return res.status(400).json({ message: `Stock insuficiente para el producto ${productFromDB.name}` });
+            }
+        }
+
+        // Realizar la compra
+        for (const item of products) {
+            const product = item.product;
+            const quantity = item.quantity;
+
+            // Actualizar el stock del producto
+            await productsModel.updateOne({ _id: product }, { $inc: { stock: -quantity } });
+        }
+
+        // Actualizar el estado del carrito a "purchased"
+        await cartsModel.updateOne({ _id: cartId }, { purchased: true });
+
+        res.json({ message: 'Compra realizada exitosamente' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al realizar la compra' });
+    }
+}
+
 export default {
     getCarts,
     getCartsById,
@@ -468,5 +521,6 @@ export default {
     deleteCartProduct,
     updateCart,
     updateProductQuantity,
-    deleteAllCartProducts
-  };
+    deleteAllCartProducts,
+    purchaseCart
+};

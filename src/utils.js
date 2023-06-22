@@ -20,3 +20,15 @@ export const checkUserRole = (role) => {
         next();
     };
 };
+
+export function calcTotal(quantity, price) {
+    return quantity * price;
+}
+
+export function calcTotalCart(cartProducts) {
+    let totalPrice = 0;
+    cartProducts.forEach((product) => {
+        totalPrice += calcTotal(product.quantity, product.product.price);
+    });
+    return totalPrice;
+}

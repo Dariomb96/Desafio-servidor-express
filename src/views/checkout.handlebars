@@ -1,0 +1,47 @@
+<div class="container bordeabajo">
+    <div class="row">
+        {{#if cartProducts.length}}
+        <div class="col-md-6">
+            <div class="row">
+                {{#each cartProducts}}
+                <div class="col-md-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h3 class="card-title">{{product.title}}</h3>
+                            <p class="card-text">Cantidad: {{this.quantity}}</p>
+                            <p class="card-text">Precio: ${{product.price}}</p>
+                            <p class="card-text">Total: ${{calcTotal product.price this.quantity}}</p>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+        <div class="col-md-6">
+            {{#if cartProducts.length}}
+            <h2>Checkout</h2>
+            <h3>Total: ${{calcTotalCart cartProducts}}</h3>
+            <form action="ticket" method="POST">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                <label for="payment">Método de Pago:</label>
+                <select id="payment" name="payment" required>
+                    <option value="credit">Tarjeta de Crédito</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+                <br>
+                <input type="hidden" name="total" value="{{calcTotalCart cartProducts}}">
+                <input type="hidden" name="cartProducts" value="{{cartProducts}}">
+                <button type="submit">Realizar Pedido</button>
+            </form>
+            {{else}}
+            <hp>No hay productos en el carrito.</p>
+            <a href="/products/">
+                <h2>Ir a comprar</h2>
+            </a>
+            {{/if}}
+        </div>
+    </div>
+</div>

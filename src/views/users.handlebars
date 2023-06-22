@@ -1,0 +1,32 @@
+<div>
+    <h1>Lista de Usuarios</h1>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+        </tr>
+        {{#each users}}
+        <tr>
+            <td>{{this.first_name}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.role}}</td>
+            <td>
+                <a href="/api/users/update-role/{{this._id}}">Modificar Rol</a>
+                <form action="/api/users/delete" method="POST">
+                    <input type="hidden" name="userId" value="{{this._id}}">
+                    <button type="submit">Eliminar Usuario</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+        <tr>
+            <td>
+                <form action="/api/users/delete-inactive" method="POST">
+                    <button type="submit">Eliminar Usuarios Inactivos</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
