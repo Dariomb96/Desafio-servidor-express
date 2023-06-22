@@ -11,7 +11,7 @@ viewsRouter.get('/',auth, getProducts);
 viewsRouter.post('/add-to-cart',auth, addToCart);
 viewsRouter.get('/purchase',auth, renderChoice);
 viewsRouter.get('/checkout',auth, renderCheckout);
-viewsRouter.post('/ticket',auth, sendEmail);
+viewsRouter.post('/ticket',auth, renderTicket, sendEmail);
 
 
 export {viewsRouter}; 

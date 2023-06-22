@@ -22,11 +22,10 @@ export async function sendEmail(req, res) {
             <h1>Ticket de compra</h1>
             <p>Fecha de compra: ${ticket.purchase_datetime}</p>
             <p>Monto: ${ticket.amount}</p>
-            <p>Comprador: ${ticket.purchaser}</p>
+            <p>Comprador: ${ticket.name}</p>
+            <p>id: ${ticket.purchaser}</p>
         </div>`;
-        console.log("Antes de eliminar el carrito" + userId);
         await cartsModel.deleteOne({ userId: userId });
-        console.log("Después de eliminar el carrito");
         await transport.sendMail({
             from: '<betancourtdariom@gmail.com>',
             to: 'betancourtdariom@gmail.com',
