@@ -33,7 +33,7 @@ elementExists("signup") &&
     const password = document.getElementById("password").value;
     const age = document.getElementById("age").value;
 
-    fetch("/signup", {
+    fetch("success", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

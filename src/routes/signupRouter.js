@@ -4,6 +4,6 @@ import { signUp, renderSignUp } from '../controllers/signup.controller.js';
 const signupRouter = express.Router();
 
 signupRouter.get("/", renderSignUp);
-signupRouter.post("/", signUp);
+signupRouter.post("/success", signUp);
 
 export { signupRouter };
