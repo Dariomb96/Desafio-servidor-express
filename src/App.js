@@ -28,12 +28,12 @@ import { mockingRouter } from './routes/mockingRouter.js';
 import { loggerRouter } from './routes/loggerRouter.js';
 
 const app = express();
-const port = 8080;
+const PORT = process.env.PORT || 8080;
 //const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const httpServer = app.listen(port, () => {
-    console.log(`listen on localhost:${port}`);
+const httpServer = app.listen(PORT, () => {
+    console.log(PORT);
 });
 
 const USER_MONGO = process.env.USER_MONGO;
