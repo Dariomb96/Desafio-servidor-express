@@ -28,9 +28,9 @@ export async function sendEmail(req, res) {
         await cartsModel.deleteOne({ userId: userId });
         console.log("Después de eliminar el carrito");
         await transport.sendMail({
-            from: 'test <betancourtdariom@gmail.com>',
+            from: '<betancourtdariom@gmail.com>',
             to: 'betancourtdariom@gmail.com',
-            subject: 'test',
+            subject: 'Ticket de compra',
             html: ticketHtml,
             attachments: []
         });
